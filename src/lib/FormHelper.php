@@ -1,6 +1,6 @@
 <?php
 
-class Helper {
+class FormHelper {
     public static function value($field) {
         return isset($_REQUEST[$field]) ? $_REQUEST[$field] : '';
     }
@@ -14,10 +14,16 @@ class Helper {
     }
 
     public static function checked($field, $option) {
-        return Helper::value($field) === $option ? 'checked' : '';
+        return FormHelper::value($field) === $option ? 'checked' : '';
     }
 
     public static function selected($field, $option) {
-        return Helper::value($field) === $option ? 'selected' : '';
+        return FormHelper::value($field) === $option ? 'selected' : '';
+    }
+
+    public static function sanitizeInput() {
+        array_walk($_REQUEST, function(&$value, $key) {
+            $value = filter_var(trim($value), FILTER_SANITIZE_STRING);
+        });
     }
 }

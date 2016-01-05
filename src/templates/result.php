@@ -4,37 +4,37 @@
     <div class="panel-body">
         <dl>
             <dt>Anrede</dt>
-            <dd><?= Helper::value('salutation') ?></dd>
+            <dd><?= FormHelper::value('salutation') ?></dd>
 
             <dt>Vorname</dt>
-            <dd><?= Helper::value('firstname') ?></dd>
+            <dd><?= FormHelper::value('firstname') ?></dd>
 
             <dt>Nachname</dt>
-            <dd><?= Helper::value('lastname') ?></dd>
+            <dd><?= FormHelper::value('lastname') ?></dd>
 
             <dt>Firma</dt>
-            <dd><?= Helper::value('company') ?></dd>
+            <dd><?= FormHelper::value('company') ?></dd>
 
             <dt>Straße</dt>
-            <dd><?= Helper::value('street') ?></dd>
+            <dd><?= FormHelper::value('street') ?></dd>
 
             <dt>Postleitzahl</dt>
-            <dd><?= Helper::value('zip') ?></dd>
+            <dd><?= FormHelper::value('zip') ?></dd>
 
             <dt>Ort</dt>
-            <dd><?= Helper::value('city') ?></dd>
+            <dd><?= FormHelper::value('city') ?></dd>
 
             <dt>E-Mail</dt>
-            <dd><?= Helper::value('email') ?></dd>
+            <dd><?= FormHelper::value('email') ?></dd>
 
             <dt>Telefon</dt>
-            <dd><?= Helper::value('phone') ?></dd>
+            <dd><?= FormHelper::value('phone') ?></dd>
 
             <dt>Versand</dt>
-            <dd><?= Helper::value('shipping') ?></dd>
+            <dd><?= FormHelper::value('shipping') ?></dd>
 
             <dt>Anmerkungen</dt>
-            <dd><?= Helper::value('notes') ?></dd>
+            <dd><?= FormHelper::value('notes') ?></dd>
         </dl>
     </div>
 </div>

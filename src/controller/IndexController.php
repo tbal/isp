@@ -18,7 +18,7 @@ class IndexController extends AbstractController {
 
         // form was submitted
         if (isset($_REQUEST['submit'])) {
-            $this->sanitizeInput();
+            FormHelper::sanitizeInput();
 
             if ($validator->validate()) {
                 // valid -> show results
@@ -32,11 +32,5 @@ class IndexController extends AbstractController {
         } else {
             $this->loadTemplate('form');
         }
-    }
-
-    private function sanitizeInput() {
-        array_walk($_REQUEST, function(&$value, $key) {
-            $value = filter_var(trim($value), FILTER_SANITIZE_STRING);
-        });
     }
 }
