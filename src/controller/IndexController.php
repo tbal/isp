@@ -1,10 +1,6 @@
 <?php
 
-class IndexController {
-
-    public function __construct() {
-        require_once(__DIR__ . '/../templates/partials/header.php');
-    }
+class IndexController extends AbstractController {
 
     public function init() {
         $validator = new Validator();
@@ -42,13 +38,5 @@ class IndexController {
         array_walk($_REQUEST, function(&$value, $key) {
             $value = filter_var(trim($value), FILTER_SANITIZE_STRING);
         });
-    }
-
-    protected function loadTemplate($template) {
-        require_once(__DIR__ . '/../templates/' . $template . '.php');
-    }
-
-    public function __destruct() {
-        require_once(__DIR__ . '/../templates/partials/footer.php');
     }
 }
