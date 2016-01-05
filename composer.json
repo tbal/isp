@@ -1,0 +1,17 @@
+{
+    "name": "tiloballer/isp",
+    "type": "library",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Tilo Baller",
+            "email": "tilo.baller@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TiloBaller\\": "src/"
+        }
+    }
+}

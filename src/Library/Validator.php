@@ -1,5 +1,7 @@
 <?php
 
+namespace TiloBaller\Library;
+
 class Validator {
     const RULE_REQUIRED = 1;
     const RULE_EMAIL    = 2;
@@ -66,7 +68,7 @@ class Validator {
                 return $input === '' || preg_match('/^\+?[0-9 \(\)\/-]+$/', $input) === 1;
                 break;
             default:
-                throw new Exception('Unknown validator rule \'%s\'. Can not validate field \'%s\' with this rule.');
+                throw new \Exception('Unknown validator rule \'%s\'. Can not validate field \'%s\' with this rule.');
         }
     }
 }

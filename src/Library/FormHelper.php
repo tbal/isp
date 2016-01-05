@@ -1,5 +1,7 @@
 <?php
 
+namespace TiloBaller\Library;
+
 class FormHelper {
     public static function value($field) {
         return isset($_REQUEST[$field]) ? $_REQUEST[$field] : '';

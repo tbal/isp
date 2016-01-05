@@ -1,3 +1,10 @@
+<?php
+
+use TiloBaller\Library\Validator;
+use TiloBaller\Library\FormHelper;
+
+?>
+
 <h2>Eingabeformular</h2>
 
 <div class="panel panel-default">
@@ -10,7 +17,6 @@
                 </div>
             </div>
         <?php endif ?>
-<?php var_dump($_SERVER) ?>
 
         <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
 

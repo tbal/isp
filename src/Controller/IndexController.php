@@ -1,5 +1,10 @@
 <?php
 
+namespace TiloBaller\Controller;
+
+use TiloBaller\Library\FormHelper;
+use TiloBaller\Library\Validator;
+
 class IndexController extends AbstractController {
 
     public function init() {

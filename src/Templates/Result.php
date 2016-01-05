@@ -1,3 +1,9 @@
+<?php
+
+use TiloBaller\Library\FormHelper;
+
+?>
+
 <h2>Resultat</h2>
 
 <div class="panel panel-default">

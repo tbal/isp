@@ -1,8 +1,5 @@
 <?php
 
-require_once(__DIR__ . '/src/lib/FormHelper.php');
-require_once(__DIR__ . '/src/lib/Validator.php');
-require_once(__DIR__ . '/src/controller/AbstractController.php');
-require_once(__DIR__ . '/src/controller/IndexController.php');
+require __DIR__ . '/vendor/autoload.php';
 
-(new IndexController())->init();
+(new \TiloBaller\Controller\IndexController())->init();
