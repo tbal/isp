@@ -3,6 +3,7 @@
 namespace TiloBaller\Library;
 
 class Validator {
+
     const RULE_REQUIRED = 1;
     const RULE_EMAIL    = 2;
     const RULE_ZIP      = 4;
@@ -11,7 +12,7 @@ class Validator {
     private static $ruleset = array();
     private static $invalidFields = array();
 
-    public function addRule($field, $rule) {
+    public static function addRule($field, $rule) {
         if (!array_key_exists($field, self::$ruleset)) {
             self::$ruleset[$field] = array();
         }
@@ -31,7 +32,7 @@ class Validator {
         return isset(self::$ruleset[$field]) && in_array($rule, self::$ruleset[$field]);
     }
 
-    public static function validate() {
+    public static function validate(array $inputArray) {
         foreach (self::$ruleset as $field => $rules) {
             foreach ($rules as $rule) {
                 if (!self::isValid($field)) {
@@ -39,7 +40,7 @@ class Validator {
                     continue;
                 }
 
-                if (!self::validateWithRule(isset($_REQUEST[$field]) ? $_REQUEST[$field] : '', $rule)) {
+                if (!self::validateWithRule(isset($inputArray[$field]) ? $inputArray[$field] : '', $rule)) {
                     self::$invalidFields[] = $field;
                 }
             }
@@ -68,7 +69,11 @@ class Validator {
                 return $input === '' || preg_match('/^\+?[0-9 \(\)\/-]+$/', $input) === 1;
                 break;
             default:
-                throw new \Exception('Unknown validator rule \'%s\'. Can not validate field \'%s\' with this rule.');
+                throw new \Exception(sprintf(
+                    'Unknown validator rule \'%s\'. Can not validate input \'%s\' with this rule.',
+                    $rule,
+                    $input
+                ));
         }
     }
 }

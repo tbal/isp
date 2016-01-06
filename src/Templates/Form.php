@@ -18,7 +18,7 @@ use TiloBaller\Library\FormHelper;
             </div>
         <?php endif ?>
 
-        <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+        <form action="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>" method="post">
 
             <h3>Adresse</h3>
 
@@ -27,50 +27,50 @@ use TiloBaller\Library\FormHelper;
                     <label for="salutation">Anrede <?= FormHelper::required('salutation') ?></label>
                     <select class="form-control" id="salutation" name="salutation">
                         <option value="">&nbsp;</option>
-                        <option <?= FormHelper::selected('salutation', 'Firma') ?>>Firma</option>
-                        <option <?= FormHelper::selected('salutation', 'Herr') ?>>Herr</option>
-                        <option <?= FormHelper::selected('salutation', 'Frau') ?>>Frau</option>
+                        <option <?= FormHelper::selected($data, 'salutation', 'Firma') ?>>Firma</option>
+                        <option <?= FormHelper::selected($data, 'salutation', 'Herr') ?>>Herr</option>
+                        <option <?= FormHelper::selected($data, 'salutation', 'Frau') ?>>Frau</option>
                     </select>
                 </div>
                 <div class="col-sm-5 <?= FormHelper::error('firstname') ?>">
                     <label for="firstname">Vorname <?= FormHelper::required('firstname') ?></label>
-                    <input class="form-control" id="firstname" name="firstname" placeholder="Max" value="<?= FormHelper::value('firstname') ?>" />
+                    <input class="form-control" id="firstname" name="firstname" placeholder="Max" value="<?= FormHelper::value($data, 'firstname') ?>" />
                 </div>
                 <div class="col-sm-5 <?= FormHelper::error('lastname') ?>">
                     <label for="lastname">Nachname <?= FormHelper::required('lastname') ?></label>
-                    <input class="form-control" id="lastname" name="lastname" placeholder="Mustermann" value="<?= FormHelper::value('lastname') ?>" />
+                    <input class="form-control" id="lastname" name="lastname" placeholder="Mustermann" value="<?= FormHelper::value($data, 'lastname') ?>" />
                 </div>
             </div>
 
             <div class="form-group <?= FormHelper::error('street') ?>">
                 <label for="street">Straße <?= FormHelper::required('street') ?></label>
-                <input class="form-control" id="street" name="street" placeholder="Musterstraße 12" value="<?= FormHelper::value('street') ?>" />
+                <input class="form-control" id="street" name="street" placeholder="Musterstraße 12" value="<?= FormHelper::value($data, 'street') ?>" />
             </div>
 
             <div class="form-group <?= FormHelper::error('company') ?>">
                 <label for="street">Firma <?= FormHelper::required('company') ?></label>
-                <input class="form-control" id="company" name="company" placeholder="Muster GmbH" value="<?= FormHelper::value('company') ?>" />
+                <input class="form-control" id="company" name="company" placeholder="Muster GmbH" value="<?= FormHelper::value($data, 'company') ?>" />
             </div>
 
             <div class="row form-group">
                 <div class="col-sm-2 <?= FormHelper::error('zip') ?>">
                     <label for="zip">Postleitzahl <?= FormHelper::required('zip') ?></label>
-                    <input class="form-control" id="zip" name="zip" placeholder="01234" value="<?= FormHelper::value('zip') ?>" />
+                    <input class="form-control" id="zip" name="zip" placeholder="01234" value="<?= FormHelper::value($data, 'zip') ?>" />
                 </div>
                 <div class="col-sm-10 <?= FormHelper::error('city') ?>">
                     <label for="city">Ort <?= FormHelper::required('city') ?></label>
-                    <input class="form-control" id="city" name="city" placeholder="Musterstadt" value="<?= FormHelper::value('city') ?>" />
+                    <input class="form-control" id="city" name="city" placeholder="Musterstadt" value="<?= FormHelper::value($data, 'city') ?>" />
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="col-sm-6 <?= FormHelper::error('email') ?>">
                     <label for="email">E-Mail <?= FormHelper::required('email') ?></label>
-                    <input class="form-control" type="email" id="email" name="email" placeholder="muster@mail.de" value="<?= FormHelper::value('email') ?>" />
+                    <input class="form-control" type="email" id="email" name="email" placeholder="muster@mail.de" value="<?= FormHelper::value($data, 'email') ?>" />
                 </div>
                 <div class="col-sm-6 <?= FormHelper::error('phone') ?>">
                     <label for="phone">Telefon <?= FormHelper::required('phone') ?></label>
-                    <input class="form-control" id="phone" name="phone" placeholder="+49 1577 123 0 456" value="<?= FormHelper::value('phone') ?>" />
+                    <input class="form-control" id="phone" name="phone" placeholder="+49 1577 123 0 456" value="<?= FormHelper::value($data, 'phone') ?>" />
                 </div>
             </div>
 
@@ -80,19 +80,19 @@ use TiloBaller\Library\FormHelper;
             <div class="form-group <?= FormHelper::error('shipping') ?>">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="shipping" id="shipping_default" value="Standard" <?= FormHelper::checked('shipping', 'Standard') ?>>
+                        <input type="radio" name="shipping" id="shipping_default" value="Standard" <?= FormHelper::checked($data, 'shipping', 'Standard') ?>>
                         Standard-Versand (3-5 Werktage)
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="shipping" id="shipping_express" value="Express" <?= FormHelper::checked('shipping', 'Express') ?>>
+                        <input type="radio" name="shipping" id="shipping_express" value="Express" <?= FormHelper::checked($data, 'shipping', 'Express') ?>>
                         Express-Versand (1-2 Werktage)
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="shipping" id="shipping_overnight" value="Overnight" <?= FormHelper::checked('shipping', 'Overnight') ?>>
+                        <input type="radio" name="shipping" id="shipping_overnight" value="Overnight" <?= FormHelper::checked($data, 'shipping', 'Overnight') ?>>
                         Overnight-Express (Lieferung am nächsten Werktag)
                     </label>
                 </div>
@@ -103,7 +103,7 @@ use TiloBaller\Library\FormHelper;
 
             <div class="form-group <?= FormHelper::error('notes') ?>">
                 <label for="notes">Ihre Anmerkungen <?= FormHelper::required('notes') ?></label>
-                <textarea class="form-control" id="notes" name="notes" placeholder="Hinweise oder Anmerkungen, die Sie uns mitteilen möchten ..." rows="3"><?= FormHelper::value('notes') ?></textarea>
+                <textarea class="form-control" id="notes" name="notes" placeholder="Hinweise oder Anmerkungen, die Sie uns mitteilen möchten ..." rows="3"><?= FormHelper::value($data, 'notes') ?></textarea>
             </div>
 
             <button type="submit" name="submit" class="btn btn-primary">Abschicken</button>

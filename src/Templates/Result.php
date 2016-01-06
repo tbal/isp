@@ -10,37 +10,37 @@ use TiloBaller\Library\FormHelper;
     <div class="panel-body">
         <dl>
             <dt>Anrede</dt>
-            <dd><?= FormHelper::value('salutation') ?></dd>
+            <dd><?= FormHelper::value($data, 'salutation') ?></dd>
 
             <dt>Vorname</dt>
-            <dd><?= FormHelper::value('firstname') ?></dd>
+            <dd><?= FormHelper::value($data, 'firstname') ?></dd>
 
             <dt>Nachname</dt>
-            <dd><?= FormHelper::value('lastname') ?></dd>
+            <dd><?= FormHelper::value($data, 'lastname') ?></dd>
 
             <dt>Firma</dt>
-            <dd><?= FormHelper::value('company') ?></dd>
+            <dd><?= FormHelper::value($data, 'company') ?></dd>
 
             <dt>Straße</dt>
-            <dd><?= FormHelper::value('street') ?></dd>
+            <dd><?= FormHelper::value($data, 'street') ?></dd>
 
             <dt>Postleitzahl</dt>
-            <dd><?= FormHelper::value('zip') ?></dd>
+            <dd><?= FormHelper::value($data, 'zip') ?></dd>
 
             <dt>Ort</dt>
-            <dd><?= FormHelper::value('city') ?></dd>
+            <dd><?= FormHelper::value($data, 'city') ?></dd>
 
             <dt>E-Mail</dt>
-            <dd><?= FormHelper::value('email') ?></dd>
+            <dd><?= FormHelper::value($data, 'email') ?></dd>
 
             <dt>Telefon</dt>
-            <dd><?= FormHelper::value('phone') ?></dd>
+            <dd><?= FormHelper::value($data, 'phone') ?></dd>
 
             <dt>Versand</dt>
-            <dd><?= FormHelper::value('shipping') ?></dd>
+            <dd><?= FormHelper::value($data, 'shipping') ?></dd>
 
             <dt>Anmerkungen</dt>
-            <dd><?= FormHelper::value('notes') ?></dd>
+            <dd><?= FormHelper::value($data, 'notes') ?></dd>
         </dl>
     </div>
 </div>
@@ -48,4 +48,4 @@ use TiloBaller\Library\FormHelper;
 
 <h4>Raw:</h4>
 
-<pre><?php print_r($_REQUEST) ?></pre>
+<pre><?php print_r($data) ?></pre>

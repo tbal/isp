@@ -2,40 +2,38 @@
 
 namespace TiloBaller\Controller;
 
-use TiloBaller\Library\FormHelper;
 use TiloBaller\Library\Validator;
 
 class IndexController extends AbstractController {
 
     public function init() {
-        $validator = new Validator();
-        $validator->addRule('salutation',   Validator::RULE_REQUIRED);
-        $validator->addRule('firstname',    Validator::RULE_REQUIRED);
-        $validator->addRule('lastname',     Validator::RULE_REQUIRED);
-        $validator->addRule('street',       Validator::RULE_REQUIRED);
-        $validator->addRule('zip',          Validator::RULE_REQUIRED);
-        $validator->addRule('zip',          Validator::RULE_ZIP);
-        $validator->addRule('city',         Validator::RULE_REQUIRED);
-        $validator->addRule('email',        Validator::RULE_REQUIRED);
-        $validator->addRule('email',        Validator::RULE_EMAIL);
-        $validator->addRule('phone',        Validator::RULE_PHONE);
-        $validator->addRule('shipping',     Validator::RULE_REQUIRED);
+        Validator::addRule('salutation',   Validator::RULE_REQUIRED);
+        Validator::addRule('firstname',    Validator::RULE_REQUIRED);
+        Validator::addRule('lastname',     Validator::RULE_REQUIRED);
+        Validator::addRule('street',       Validator::RULE_REQUIRED);
+        Validator::addRule('zip',          Validator::RULE_REQUIRED);
+        Validator::addRule('zip',          Validator::RULE_ZIP);
+        Validator::addRule('city',         Validator::RULE_REQUIRED);
+        Validator::addRule('email',        Validator::RULE_REQUIRED);
+        Validator::addRule('email',        Validator::RULE_EMAIL);
+        Validator::addRule('phone',        Validator::RULE_PHONE);
+        Validator::addRule('shipping',     Validator::RULE_REQUIRED);
 
         // form was submitted
-        if (isset($_REQUEST['submit'])) {
-            FormHelper::sanitizeInput();
+        if (isset($this->request['submit'])) {
+            $data = array('data' => $this->request);
 
-            if ($validator->validate()) {
+            if (Validator::validate($this->request)) {
                 // valid -> show results
-                $this->loadTemplate('result');
+                $this->render('result', $data);
             } else {
                 // form has errors -> show again
-                $this->loadTemplate('form');
+                $this->render('form', $data);
             }
 
         // show empty form
         } else {
-            $this->loadTemplate('form');
+            $this->render('form');
         }
     }
 }
