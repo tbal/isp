@@ -1,6 +1,17 @@
 web:
   image: php:5.6-apache
+  links:
+    - db
   ports:
     - "8080:80"
   volumes:
     - .:/var/www/html/
+db:
+  image: mysql:5.5
+  ports:
+    - "13306:3306"
+  environment:
+    MYSQL_RANDOM_ROOT_PASSWORD: true
+    MYSQL_USER: isp
+    MYSQL_PASSWORD: isp
+    MYSQL_DATABASE: isp
