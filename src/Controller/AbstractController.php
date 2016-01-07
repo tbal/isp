@@ -2,12 +2,17 @@
 
 namespace TiloBaller\Controller;
 
+use TiloBaller\Library\Database;
+
 abstract class AbstractController {
 
     protected $request;
 
+    protected $db;
+
     public function __construct(array $request = array()) {
         $this->request = $request;
+        $this->db = Database::getInstance();
 
         $this->loadTemplateFile('header', TRUE);
     }
