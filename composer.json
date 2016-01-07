@@ -8,10 +8,20 @@
             "email": "tilo.baller@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^2.2"
+    },
     "autoload": {
         "psr-4": {
             "TiloBaller\\": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "[ -e .env ] || cp .env.example .env"
+        ],
+        "post-update-cmd": [
+            "[ -e .env ] || cp .env.example .env"
+        ]
     }
 }
