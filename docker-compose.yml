@@ -1,5 +1,5 @@
 web:
-  image: php:5.6-apache
+  build: ./build/
   links:
     - db
   ports:
