@@ -15,3 +15,12 @@ database:
     MYSQL_USER: isp
     MYSQL_PASSWORD: isp
     MYSQL_DATABASE: isp
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  links:
+    - database
+  restart: always
+  environment:
+    - PMA_ARBITRARY=1
+  ports:
+    - 8001:8080
