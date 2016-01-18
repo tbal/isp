@@ -8,15 +8,24 @@ class Database {
 
     private static $instance;
 
+    /**
+     * Returns the Database instance of this class
+     *
+     * @return \TiloBaller\Library\Database
+     */
     public static function getInstance() {
-        if (!self::$instance) {
-            self::$instance = new self();
+        if (null === self::$instance) {
+            self::$instance = new static();
         }
 
-        return self::$instance;
+        return static::$instance;
     }
 
-    private function __construct() {
+    /**
+     * Protected constructor to prevent creating a new instance of the
+     * Database via the 'new' operator from outside of this class.
+     */
+    protected function __construct() {
         $this->connection = new \mysqli(
             getenv('DB_HOST'), getenv('DB_USER'), getenv('DB_PASS'), getenv('DB_NAME'), (int) getenv('DB_PORT')
         );
@@ -30,7 +39,22 @@ class Database {
         }
     }
 
+    /**
+     * Private clone method to prevent cloning of the instance of the
+     * Database instance.
+     *
+     * @return void
+     */
     private function __clone() {
+    }
+
+    /**
+     * Private unserialize method to prevent unserializing of the Database
+     * instance.
+     *
+     * @return void
+     */
+    private function __wakeup() {
     }
 
     public function query($sql) {
@@ -48,7 +72,7 @@ class Database {
         return $result;
     }
 
-    public function __destruct() {
+    protected function __destruct() {
         $this->connection->close();
     }
 }
