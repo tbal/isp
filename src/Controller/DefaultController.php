@@ -4,9 +4,9 @@ namespace TiloBaller\Controller;
 
 use TiloBaller\Library\Validator;
 
-class IndexController extends AbstractController {
+class DefaultController extends AbstractController {
 
-    public function init() {
+    public function indexAction() {
         Validator::addRule('salutation',   Validator::RULE_REQUIRED);
         Validator::addRule('firstname',    Validator::RULE_REQUIRED);
         Validator::addRule('lastname',     Validator::RULE_REQUIRED);
