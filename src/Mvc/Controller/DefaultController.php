@@ -1,6 +1,6 @@
 <?php
 
-namespace TiloBaller\Controller;
+namespace TiloBaller\Mvc\Controller;
 
 use TiloBaller\Library\Validator;
 
@@ -35,5 +35,38 @@ class DefaultController extends AbstractController {
         } else {
             $this->render('form');
         }
+    }
+
+    public function testAction() {
+        $post = new \TiloBaller\Mvc\Domain\Model\PostModel();
+        $post->setAuthor('Tilo Baller');
+        $post->setDate(time());
+        $post->setTitle('Erster Post');
+        $post->setAbstract('Lorem ipsum dolor sit amet');
+        $post->setBody('foo');
+
+        $postRepository = new \TiloBaller\Mvc\Domain\Repository\PostRepository();
+        $result = $postRepository->add($post);
+
+        echo '<pre>';
+        var_dump($result);
+        echo '</pre>';
+
+
+        $result->setAuthor('Tim Tester');
+        echo '<pre>';
+        var_dump($result);
+        echo '</pre>';
+        $result2 = $postRepository->update($result);
+
+        echo '<pre>';
+        var_dump($result2);
+        echo '</pre>';
+
+
+        $postRepository->remove($result);
+        echo '<pre>';
+        var_dump($postRepository->getAll());
+        echo '</pre>';
     }
 }

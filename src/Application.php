@@ -12,7 +12,7 @@ class Application {
         });
 
         // determine controller
-        $controllerClass = '\\TiloBaller\\Controller\\'
+        $controllerClass = '\\TiloBaller\\Mvc\\Controller\\'
             . ucfirst(isset($request['controller']) ? $request['controller'] : 'default') . 'Controller';
 
         // check if requested controller exists

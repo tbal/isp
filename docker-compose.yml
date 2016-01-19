@@ -8,6 +8,7 @@ web:
     - .:/var/www/html/
   environment:
     DB_HOST: database
+
 database:
   image: mysql:5.5
   environment:
@@ -15,6 +16,7 @@ database:
     MYSQL_USER: isp
     MYSQL_PASSWORD: isp
     MYSQL_DATABASE: isp
+
 phpmyadmin:
   image: phpmyadmin/phpmyadmin
   links:
