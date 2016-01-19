@@ -2,8 +2,6 @@
 
 ## Installation ##
 
-This Project uses PSR-4 class autoloading provided by composer. Therefore you need to run:
-
 `$ composer install`
 
 *Requires [composer](https://getcomposer.org/download/) to be installed.*
@@ -12,16 +10,19 @@ This Project uses PSR-4 class autoloading provided by composer. Therefore you ne
 
 ### Using Docker (recommended) ###
 
+`$ docker-compose up -d`
+
 *Requires [docker-compose](https://docs.docker.com/compose/install/) to be installed.*
 
-`$ docker-compose up`
-
-Brings up one container running Apache2 with PHP and another one running a MySQL server and links both together.
-You can then access the MySQL client prompt by using: `$ bin/mysql-prompt`
+Brings up a complete environment running Apache2 with PHP, a MySQL server and phpMyAdmin.
 
 Open <http://localhost:8080/> to view the application.
 
-To suspend the containers just run `$ docker-compose stop` and for starting them again `$ docker-compose start`
+phpMyAdmin is available at <http://localhost:8001>.
+
+Additionally, you can then access the MySQL client prompt directly by using: `$ bin/mysql-prompt`
+
+To suspend the containers just run `$ docker-compose stop` and for starting them again `$ docker-compose start` or `$ docker-compose up`.
 
 
 ### Using build-in PHP Webserver and own MySQL server ###
@@ -30,7 +31,7 @@ To suspend the containers just run `$ docker-compose stop` and for starting them
 
 `$ bin/webserver # starts internal PHP Webserver`
 
-Open <http://localhost:8080/> to view the application.
+Open <http://localhost:8000/> to view the application.
 
 It's on you to provide a MySQL Server with a working database structure. Database credentials should be:  
 User: `isp`  
