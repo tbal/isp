@@ -16,6 +16,8 @@ database:
     MYSQL_USER: isp
     MYSQL_PASSWORD: isp
     MYSQL_DATABASE: isp
+  volumes:
+    - ./data:/docker-entrypoint-initdb.d
 
 phpmyadmin:
   image: phpmyadmin/phpmyadmin
