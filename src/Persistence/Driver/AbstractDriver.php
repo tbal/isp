@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Persistence\Driver;
 
+/**
+ * Class AbstractDriver
+ *
+ * @package TiloBaller\Persistence\Driver
+ */
 abstract class AbstractDriver implements DriverInterface {
 
     /**

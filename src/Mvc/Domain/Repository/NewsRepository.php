@@ -4,6 +4,11 @@ namespace TiloBaller\Mvc\Domain\Repository;
 
 use TiloBaller\Mvc\Domain\Model\NewsModel;
 
+/**
+ * Class NewsRepository
+ *
+ * @package TiloBaller\Mvc\Domain\Repository
+ */
 class NewsRepository extends AbstractRepository {
 
     /**

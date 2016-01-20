@@ -14,11 +14,11 @@
 
 *Requires [docker-compose](https://docs.docker.com/compose/install/) to be installed.*
 
-Brings up a complete environment running Apache2 with PHP, a MySQL server and phpMyAdmin.
+Brings up a complete environment running Apache2 with PHP, a MySQL server including sample content data and phpMyAdmin.
 
 Open <http://localhost:8080/> to view the application.
 
-phpMyAdmin is available at <http://localhost:8001>.
+phpMyAdmin is available at <http://localhost:8081>.
 
 Additionally, you can then access the MySQL client prompt directly by using: `$ bin/mysql-prompt`
 
@@ -31,7 +31,7 @@ To suspend the containers just run `$ docker-compose stop` and for starting them
 
 `$ bin/webserver # starts internal PHP Webserver`
 
-Open <http://localhost:8000/> to view the application.
+Open <http://localhost:8080/> to view the application.
 
 It's on you to provide a MySQL Server with a working database structure. Database credentials should be:  
 User: `isp`  

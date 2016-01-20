@@ -4,6 +4,11 @@ namespace TiloBaller\Persistence;
 
 use TiloBaller\Persistence\Driver\DriverInterface;
 
+/**
+ * Class Database
+ *
+ * @package TiloBaller\Persistence
+ */
 class Database {
 
     /**
@@ -50,7 +55,6 @@ class Database {
      * Database via the 'new' operator from outside of this class.
      *
      * @param DriverInterface $driver
-     * @throws \Exception
      */
     protected function __construct(DriverInterface $driver) {
         $this->connection = new \PDO(
@@ -92,15 +96,6 @@ class Database {
      * @return void
      */
     private function __clone() {
-    }
-
-    /**
-     * Private unserialize method to prevent unserializing of the Database
-     * instance.
-     *
-     * @return void
-     */
-    private function __wakeup() {
     }
 
     /**

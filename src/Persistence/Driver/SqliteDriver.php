@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Persistence\Driver;
 
+/**
+ * Class SqliteDriver
+ *
+ * @package TiloBaller\Persistence\Driver
+ */
 class SqliteDriver extends AbstractDriver {
 
     /**

@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Persistence\Driver;
 
+/**
+ * Class PostgresDriver
+ *
+ * @package TiloBaller\Persistence\Driver
+ */
 class PostgresDriver extends AbstractDriver {
 
     /**

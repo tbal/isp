@@ -69,7 +69,7 @@ class Validator {
                 return $input === '' || preg_match('/^\+?[0-9 \(\)\/-]+$/', $input) === 1;
                 break;
             default:
-                throw new \Exception(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Unknown validator rule \'%s\'. Can not validate input \'%s\' with this rule.',
                     $rule,
                     $input

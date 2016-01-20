@@ -8,9 +8,11 @@ class FormHelper {
         return isset($inputArray[$field]) ? $inputArray[$field] : '';
     }
 
-    public static function property($inputObject, $property) {
+    public static function property($inputObject, $property, $params = null) {
         $methodName = 'get' . ucfirst($property);
-        return method_exists($inputObject, $methodName) ? $inputObject->$methodName() : '';
+        return method_exists($inputObject, $methodName)
+            ? call_user_func_array(array($inputObject, $methodName), ($params !== null ? (array)$params : array()))
+            : '';
     }
 
     public static function selected($inputArray, $field, $option) {

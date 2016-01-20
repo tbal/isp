@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Persistence\Driver;
 
+/**
+ * Class MysqlDriver
+ *
+ * @package TiloBaller\Persistence\Driver
+ */
 class MysqlDriver extends AbstractDriver {
 
     /**

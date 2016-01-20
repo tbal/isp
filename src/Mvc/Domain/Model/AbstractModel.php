@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Mvc\Domain\Model;
 
+/**
+ * Class AbstractModel
+ *
+ * @package TiloBaller\Mvc\Domain\Model
+ */
 abstract class AbstractModel {
 
     /**

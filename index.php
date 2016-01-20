@@ -9,4 +9,11 @@ $dotenv->load();
 $dotenv->required(array('DB_HOST', 'DB_USER', 'DB_NAME'))->notEmpty();
 $dotenv->required('DB_PASS');
 
+
+// quickfix if timezone is not set
+if (!ini_get('date.timezone')) {
+    ini_set('date.timezone', 'Europe/Berlin');
+}
+
+
 new \TiloBaller\Application();

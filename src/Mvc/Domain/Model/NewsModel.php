@@ -2,6 +2,11 @@
 
 namespace TiloBaller\Mvc\Domain\Model;
 
+/**
+ * Class NewsModel
+ *
+ * @package TiloBaller\Mvc\Domain\Model
+ */
 class NewsModel extends AbstractModel {
 
     /**
@@ -30,17 +35,26 @@ class NewsModel extends AbstractModel {
     protected $body;
 
     /**
+     * @param string|null $format see http://php.net/manual/de/function.date.php
      * @return int
      */
-    public function getDate() {
-        return $this->date;
+    public function getDate($format = null) {
+        return ($this->date && !empty($format)) ? date($format, $this->date) : $this->date;
     }
 
     /**
-     * @param int $date
+     * @param int|string $date
      */
     public function setDate($date) {
-        $this->date = $date;
+        if (empty($date)) {
+            $this->date = null;
+        } elseif (is_string($date)) {
+            $this->date = strtotime($date);
+        } elseif (is_int($date)) {
+            $this->date = $date;
+        } else {
+            $this->date = null;
+        }
     }
 
     /**

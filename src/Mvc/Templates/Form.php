@@ -1,113 +1,69 @@
 <?php
-
 use TiloBaller\Library\Validator;
 use TiloBaller\Library\FormHelper;
 
+/** @var string $mode */
+/** @var \TiloBaller\Mvc\Domain\Model\NewsModel $news */
 ?>
 
-<h2>Eingabeformular</h2>
+<?php if (isset($addResult) && $addResult === false): ?>
+    <div class="alert alert-danger" role="alert">Beim Hinzufügen der News ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</div>
+<?php endif ?>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-
-        <?php if(Validator::hasErrors()): ?>
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    Ihre Eingabe war entweder unvollständig oder fehlerhaft. Bitte überprüfen Sie noch einmal Ihre Angaben.
-                </div>
-            </div>
-        <?php endif ?>
-
-        <form action="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>" method="post">
-
-            <h3>Adresse</h3>
-
-            <div class="row form-group">
-                <div class="col-sm-2 <?= FormHelper::error('salutation') ?>">
-                    <label for="salutation">Anrede <?= FormHelper::required('salutation') ?></label>
-                    <select class="form-control" id="salutation" name="salutation">
-                        <option value="">&nbsp;</option>
-                        <option <?= FormHelper::selected($data, 'salutation', 'Firma') ?>>Firma</option>
-                        <option <?= FormHelper::selected($data, 'salutation', 'Herr') ?>>Herr</option>
-                        <option <?= FormHelper::selected($data, 'salutation', 'Frau') ?>>Frau</option>
-                    </select>
-                </div>
-                <div class="col-sm-5 <?= FormHelper::error('firstname') ?>">
-                    <label for="firstname">Vorname <?= FormHelper::required('firstname') ?></label>
-                    <input class="form-control" id="firstname" name="firstname" placeholder="Max" value="<?= FormHelper::value($data, 'firstname') ?>" />
-                </div>
-                <div class="col-sm-5 <?= FormHelper::error('lastname') ?>">
-                    <label for="lastname">Nachname <?= FormHelper::required('lastname') ?></label>
-                    <input class="form-control" id="lastname" name="lastname" placeholder="Mustermann" value="<?= FormHelper::value($data, 'lastname') ?>" />
-                </div>
-            </div>
-
-            <div class="form-group <?= FormHelper::error('street') ?>">
-                <label for="street">Straße <?= FormHelper::required('street') ?></label>
-                <input class="form-control" id="street" name="street" placeholder="Musterstraße 12" value="<?= FormHelper::value($data, 'street') ?>" />
-            </div>
-
-            <div class="form-group <?= FormHelper::error('company') ?>">
-                <label for="street">Firma <?= FormHelper::required('company') ?></label>
-                <input class="form-control" id="company" name="company" placeholder="Muster GmbH" value="<?= FormHelper::value($data, 'company') ?>" />
-            </div>
-
-            <div class="row form-group">
-                <div class="col-sm-2 <?= FormHelper::error('zip') ?>">
-                    <label for="zip">Postleitzahl <?= FormHelper::required('zip') ?></label>
-                    <input class="form-control" id="zip" name="zip" placeholder="01234" value="<?= FormHelper::value($data, 'zip') ?>" />
-                </div>
-                <div class="col-sm-10 <?= FormHelper::error('city') ?>">
-                    <label for="city">Ort <?= FormHelper::required('city') ?></label>
-                    <input class="form-control" id="city" name="city" placeholder="Musterstadt" value="<?= FormHelper::value($data, 'city') ?>" />
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col-sm-6 <?= FormHelper::error('email') ?>">
-                    <label for="email">E-Mail <?= FormHelper::required('email') ?></label>
-                    <input class="form-control" type="email" id="email" name="email" placeholder="muster@mail.de" value="<?= FormHelper::value($data, 'email') ?>" />
-                </div>
-                <div class="col-sm-6 <?= FormHelper::error('phone') ?>">
-                    <label for="phone">Telefon <?= FormHelper::required('phone') ?></label>
-                    <input class="form-control" id="phone" name="phone" placeholder="+49 1577 123 0 456" value="<?= FormHelper::value($data, 'phone') ?>" />
-                </div>
-            </div>
+<?php if (isset($updateResult) && $updateResult === false): ?>
+    <div class="alert alert-danger" role="alert">Beim Speichern der Änderungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</div>
+<?php endif ?>
 
 
-            <h3>Versand <?= FormHelper::required('shipping') ?></h3>
-
-            <div class="form-group <?= FormHelper::error('shipping') ?>">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="shipping" id="shipping_default" value="Standard" <?= FormHelper::checked($data, 'shipping', 'Standard') ?>>
-                        Standard-Versand (3-5 Werktage)
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="shipping" id="shipping_express" value="Express" <?= FormHelper::checked($data, 'shipping', 'Express') ?>>
-                        Express-Versand (1-2 Werktage)
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="shipping" id="shipping_overnight" value="Overnight" <?= FormHelper::checked($data, 'shipping', 'Overnight') ?>>
-                        Overnight-Express (Lieferung am nächsten Werktag)
-                    </label>
-                </div>
-            </div>
+<h1>
+    News
+    <?php if ($mode === 'update'): ?>
+    bearbeiten
+    <?php else: ?>
+    hinzufügen
+    <?php endif ?>
+</h1>
 
 
-            <h3>Sonstiges</h3>
-
-            <div class="form-group <?= FormHelper::error('notes') ?>">
-                <label for="notes">Ihre Anmerkungen <?= FormHelper::required('notes') ?></label>
-                <textarea class="form-control" id="notes" name="notes" placeholder="Hinweise oder Anmerkungen, die Sie uns mitteilen möchten ..." rows="3"><?= FormHelper::value($data, 'notes') ?></textarea>
-            </div>
-
-            <button type="submit" name="submit" class="btn btn-primary">Abschicken</button>
-
-        </form>
+<?php if(Validator::hasErrors()): ?>
+    <div class="alert alert-danger" role="alert">
+        Ihre Eingabe war entweder unvollständig oder fehlerhaft. Bitte überprüfen Sie noch einmal Ihre Angaben.
     </div>
-</div>
+<?php endif ?>
+
+<form action="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>" method="post">
+
+    <div class="form-group <?= FormHelper::error('title') ?>">
+        <label for="title">Titel <?= FormHelper::required('title') ?></label>
+        <input class="form-control" id="title" name="title" value="<?= FormHelper::property($news, 'title') ?>" />
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6 <?= FormHelper::error('date') ?>">
+            <label for="date">Datum <?= FormHelper::required('date') ?></label>
+            <input class="form-control datepicker" id="date" name="date" placeholder="TT.MM.JJJJ" value="<?= FormHelper::property($news, 'date', 'd.m.Y') ?>" />
+        </div>
+        <div class="col-sm-6 <?= FormHelper::error('author') ?>">
+            <label for="author">Autor <?= FormHelper::required('author') ?></label>
+            <input class="form-control" id="author" name="author" value="<?= FormHelper::property($news, 'author') ?>" />
+        </div>
+    </div>
+
+    <div class="form-group <?= FormHelper::error('abstract') ?>">
+        <label for="abstract">Abstrakt <?= FormHelper::required('abstract') ?></label>
+        <textarea class="form-control" id="abstract" name="abstract" rows="2"><?= FormHelper::property($news, 'abstract') ?></textarea>
+    </div>
+
+    <div class="form-group <?= FormHelper::error('body') ?>">
+        <label for="body">Inhalt <?= FormHelper::required('body') ?></label>
+        <textarea class="form-control" id="body" name="body" rows="10"><?= FormHelper::property($news, 'body') ?></textarea>
+    </div>
+
+    <p>
+        <button type="submit" name="submit" class="btn btn-primary">Abschicken</button>
+        <?php if ($mode === 'update'): ?>
+        <a href="/?controller=news&action=single&id=<?= $news->getId() ?>" class="btn btn-default abort-update">Abbrechen</a>
+        <?php endif ?>
+    </p>
+
+</form>
