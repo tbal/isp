@@ -30,16 +30,24 @@ abstract class AbstractRepository {
     }
 
     /**
-     * @return Object
+     * @param array $orderBy
+     * @return array
      */
-    public function getAll() {
-        $stmt = $this->db->query('SELECT * FROM ' . $this->getEntityName());
+    public function getAll(array $orderBy = array('updated' => 'DESC')) {
+        $orderByParams = $orderByStringChunks = array();
+        foreach ($orderBy as $field => $direction) {
+            $orderByParams[] = $field;
+            $orderByStringChunks[] = '? ' . (strtoupper($direction) === 'ASC' ? 'ASC' : 'DESC');
+        }
+        $orderBy = count($orderByStringChunks) ? (' ORDER BY ' . implode(', ', $orderByStringChunks)) : '';
+
+        $stmt = $this->db->query('SELECT * FROM ' . $this->getEntityName() . $orderBy, $orderByParams);
         return $stmt->fetchAll(\PDO::FETCH_CLASS, $this->getEntityClass());
     }
 
     /**
      * @param $id
-     * @return Object
+     * @return mixed
      */
     public function getOneById($id) {
         $stmt = $this->db->query('SELECT * FROM ' . $this->getEntityName() . ' WHERE id = ?', array($id));
