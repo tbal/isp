@@ -8,6 +8,11 @@ class FormHelper {
         return isset($inputArray[$field]) ? $inputArray[$field] : '';
     }
 
+    public static function property($inputObject, $property) {
+        $methodName = 'get' . ucfirst($property);
+        return method_exists($inputObject, $methodName) ? $inputObject->$methodName() : '';
+    }
+
     public static function selected($inputArray, $field, $option) {
         return FormHelper::value($inputArray, $field) === $option ? 'selected' : '';
     }
