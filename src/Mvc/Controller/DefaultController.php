@@ -38,15 +38,15 @@ class DefaultController extends AbstractController {
     }
 
     public function testAction() {
-        $post = new \TiloBaller\Mvc\Domain\Model\PostModel();
-        $post->setAuthor('Tilo Baller');
-        $post->setDate(time());
-        $post->setTitle('Erster Post');
-        $post->setAbstract('Lorem ipsum dolor sit amet');
-        $post->setBody('foo');
+        $news = new \TiloBaller\Mvc\Domain\Model\NewsModel();
+        $news->setAuthor('Tilo Baller');
+        $news->setDate(time());
+        $news->setTitle('Erster News');
+        $news->setAbstract('Lorem ipsum dolor sit amet');
+        $news->setBody('foo');
 
-        $postRepository = new \TiloBaller\Mvc\Domain\Repository\PostRepository();
-        $result = $postRepository->add($post);
+        $newsRepository = new \TiloBaller\Mvc\Domain\Repository\NewsRepository();
+        $result = $newsRepository->add($news);
 
         echo '<pre>';
         var_dump($result);
@@ -57,16 +57,16 @@ class DefaultController extends AbstractController {
         echo '<pre>';
         var_dump($result);
         echo '</pre>';
-        $result2 = $postRepository->update($result);
+        $result2 = $newsRepository->update($result);
 
         echo '<pre>';
         var_dump($result2);
         echo '</pre>';
 
 
-        $postRepository->remove($result);
+        //$newsRepository->remove($result);
         echo '<pre>';
-        var_dump($postRepository->getAll());
+        var_dump($newsRepository->getAll());
         echo '</pre>';
     }
 }

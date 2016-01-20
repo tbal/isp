@@ -2,7 +2,7 @@
 
 namespace TiloBaller\Mvc\Domain\Model;
 
-class PostModel extends AbstractModel {
+class NewsModel extends AbstractModel {
 
     /**
      * @var int
