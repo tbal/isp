@@ -34,7 +34,18 @@ class Application {
             }
         }
 
+        // buffer output to have control over it in case of errors
+        ob_start();
+
         // call controller with action
         (new $controllerClass($request))->$actionMethod();
+
+        // only show output if status code is fine
+        if (http_response_code() < 400) {
+            ob_end_flush();
+        // otherwise drop all content
+        } else {
+            ob_end_clean();
+        }
     }
 }
