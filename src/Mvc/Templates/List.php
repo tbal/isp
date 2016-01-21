@@ -44,7 +44,7 @@
         <p class="pull-left margin-right-100">
             <?= $news->getAbstract() ?>
         </p>
-        <span class="pull-right">
+        <span class="hidden-xs pull-right">
             <a href="/?controller=news&action=single&id=<?= $news->getId() ?>" class="btn btn-default" title="zeige News: <?= $news->getTitle() ?>">mehr &raquo;</a>
         </span>
     </div>
